@@ -50,4 +50,4 @@
 
 - name: Debug templates
   debug:
-    msg: "{{ nodelocaldns_config }}"
+    msg: "{{ nodelocaldns_config |string | b64decode }}"
