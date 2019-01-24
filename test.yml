@@ -8,25 +8,25 @@ metadata:
 
 data:
   Corefile: |
-    {{ dns_domain }}:53 {
+    cluster.local:53 {
         errors
         cache 30
         reload
         loop
-        bind {{ nodelocaldns_ip }}
-        forward . {{ forwardTarget }} {
+        bind 169.254.25.10
+        forward . 10.233.0.3 {
             force_tcp
         }
         prometheus :9253
-        health {{ nodelocaldns_ip }}:8080
+        health 169.254.25.10:8080
     }
     in-addr.arpa:53 {
         errors
         cache 30
         reload
         loop
-        bind {{ nodelocaldns_ip }}
-        forward . {{ forwardTarget }} {
+        bind 169.254.25.10
+        forward . 10.233.0.3 {
             force_tcp
         }
         prometheus :9253
@@ -36,8 +36,8 @@ data:
         cache 30
         reload
         loop
-        bind {{ nodelocaldns_ip }}
-        forward . {{ forwardTarget }} {
+        bind 169.254.25.10
+        forward . 10.233.0.3 {
             force_tcp
         }
         prometheus :9253
@@ -47,8 +47,8 @@ data:
         cache 30
         reload
         loop
-        bind {{ nodelocaldns_ip }}
-        forward . {{ upstreamForwardTarget }} {
+        bind 169.254.25.10
+        forward . 1.1.1.1 {
             force_tcp
         }
         prometheus :9253
